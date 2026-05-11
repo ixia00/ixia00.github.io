@@ -73,7 +73,7 @@ const slug = params.get('slug');
 
 async function loadPost() {
   try {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}/${slug}.md`);
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}/${encodeURIComponent(slug)}.md`);
     const file = await res.json();
     const text = atob(file.content.replace(/\n/g, ''));
 
