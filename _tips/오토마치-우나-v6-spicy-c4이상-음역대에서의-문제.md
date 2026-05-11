@@ -2,8 +2,8 @@
 title: 오토마치 우나 V6 Spicy C4이상 음역대에서의 문제
 date: 2026-05-12T00:01:00
 tags:
-  - 오토마치 우나
-  - VOCALOID
+  - '#오토마치 우나'
+  - '#VOCALOID'
 summary: 해결 불가능합니다.
 ---
 
