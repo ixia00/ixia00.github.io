@@ -106,8 +106,8 @@ async function loadPost() {
         ${marked(body)}
       </div>
     `;
-  } catch(e) {
-    el.innerHTML = '<p class="post-loading">글을 찾을 수 없습니다.</p>';
+} catch(e) {
+    el.innerHTML = '<p class="post-loading">' + e.message + '</p>';
   }
 }
 
