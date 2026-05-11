@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: ixia00/ixia00.github.io
+  branch: main
+
+media_folder: "img"
+public_folder: "img"
+
+collections:
+  - name: "tips"
+    label: "Tips"
+    folder: "_tips"
+    create: true
+    fields:
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "날짜", name: "date", widget: "datetime"}
+      - {label: "태그", name: "tags", widget: "list"}
+      - {label: "요약", name: "summary", widget: "string"}
+      - {label: "본문", name: "body", widget: "markdown"}
+
+  - name: "download"
+    label: "Download"
+    folder: "_download"
+    create: true
+    fields:
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "날짜", name: "date", widget: "datetime"}
+      - {label: "요약", name: "summary", widget: "string"}
+      - {label: "본문", name: "body", widget: "markdown"}
