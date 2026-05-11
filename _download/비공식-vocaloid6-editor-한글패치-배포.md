@@ -6,7 +6,7 @@ summary: 윈도우 버전은 추후 추가될 예정입니다.
 
 본 한글패치 파일을 제가 개인적으로 사용하기 위해 만든 파일로 보컬로이드 공식과는 무관합니다.
 
-Mac | `<a href="https://ixia00.github.io/downloads/kr_patch/mac/ko.lproj.zip" class="dl-btn">한글패치 다운로드</a>`
+Mac | <a href="https://ixia00.github.io/downloads/kr_patch/mac/ko.lproj.zip" class="dl-btn">한글패치 다운로드</a>
 
 설정 방법
 
