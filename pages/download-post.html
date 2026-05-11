@@ -64,7 +64,6 @@
 <script src="../js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-/* GitHub API로 마크다운 파일 읽어오기 */
 const REPO = 'ixia00/ixia00.github.io';
 const FOLDER = '_download';
 const el = document.getElementById('post-content');
@@ -73,12 +72,10 @@ const slug = params.get('slug');
 
 async function loadPost() {
   try {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}/${encodeURIComponent(slug)}.md`);
-    const file = await res.json();
-    const text = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
-
-    /* frontmatter 제거하고 본문만 추출 */
-    const body = text.replace(/^---[\s\S]*?---\n/, '');
+    /* base64 대신 raw URL로 직접 파일 읽기 */
+    const rawUrl = `https://raw.githubusercontent.com/${REPO}/main/${FOLDER}/${encodeURIComponent(slug)}.md`;
+    const res = await fetch(rawUrl);
+    const text = await res.text();
 
     /* frontmatter 파싱 */
     const match = text.match(/^---\n([\s\S]*?)\n---/);
@@ -86,27 +83,33 @@ async function loadPost() {
     if (match) {
       match[1].split('\n').forEach(line => {
         const [key, ...val] = line.split(':');
-        if (key) meta[key.trim()] = val.join(':').trim().replace(/^"|"$/g, '');
+        if (key) meta[key.trim()] = val.join(':').trim().replace(/^'|'$/g, '').replace(/^"|"$/g, '');
       });
     }
+
+    /* 본문 추출 */
+    const body = text.replace(/^---[\s\S]*?---\n/, '');
 
     const d = new Date(meta.date);
     const dateStr = meta.date ? `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}` : '';
 
-    document.title = meta.title + ' — iXia';
+    document.title = (meta.title || slug) + ' — iXia';
+
+    /* marked HTML 허용 설정 */
+    marked.setOptions({ headerIds: false, mangle: false });
+    const renderer = new marked.Renderer();
+    const html = marked.parse(body, { renderer });
 
     el.innerHTML = `
       <header class="post-header">
         <div class="post-meta">
           <span class="post-date">${dateStr}</span>
         </div>
-        <h1 class="post-title">${meta.title}</h1>
+        <h1 class="post-title">${meta.title || slug}</h1>
       </header>
-      <div class="post-body">
-        ${marked.parse(body, {mangle: false, headerIds: false, sanitize: false})}
-      </div>
+      <div class="post-body">${html}</div>
     `;
-} catch(e) {
+  } catch(e) {
     el.innerHTML = '<p class="post-loading">' + e.message + '</p>';
   }
 }
