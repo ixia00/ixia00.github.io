@@ -75,7 +75,7 @@ async function loadPost() {
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}/${encodeURIComponent(slug)}.md`);
     const file = await res.json();
-    const text = atob(file.content.replace(/\n/g, ''));
+    const text = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
 
     /* frontmatter 제거하고 본문만 추출 */
     const body = text.replace(/^---[\s\S]*?---\n/, '');
