@@ -102,8 +102,12 @@ async function loadPost() {
 
     document.title = (meta.title || slug) + ' — iXia';
 
-    marked.use({ breaks: true });
-    const html = marked.parse(body);
+    marked.use({ breaks: true, gfm: true });
+marked.setOptions({ pedantic: false });
+const html = marked.parse(body, { async: false });
+const wrapper = document.createElement('div');
+wrapper.innerHTML = html;
+const html2 = wrapper.innerHTML;
 
     el.innerHTML = `
       <header class="post-header">
@@ -115,7 +119,7 @@ async function loadPost() {
         </div>
         <h1 class="post-title">${meta.title || slug}</h1>
       </header>
-      <div class="post-body">${html}</div>
+      <div class="post-body"> ${html2}</div>
     `;
   } catch(e) {
     el.innerHTML = '<p class="post-loading">글을 찾을 수 없습니다.</p>';
