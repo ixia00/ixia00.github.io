@@ -96,8 +96,12 @@ async function loadPost() {
     document.title = (meta.title || slug) + ' — iXia';
 
     const div = document.createElement('div');
-    div.innerHTML = body.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
-    const html = '<p>' + div.innerHTML + '</p>';
+div.innerHTML = body
+  .replace(/^<p>\s*<\/p>/gm, '')
+  .replace(/\n\n/g, '</p><p>')
+  .replace(/\n/g, '<br>');
+const html = div.innerHTML;
+
     el.innerHTML = `
       <header class="post-header">
         <div class="post-meta">
