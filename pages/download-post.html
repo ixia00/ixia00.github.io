@@ -81,7 +81,13 @@ async function loadPost() {
     if (match) {
       match[1].split('\n').forEach(line => {
         const [key, ...val] = line.split(':');
-        if (key) meta[key.trim()] = val.join(':').trim().replace(/^['"]|['"]$/g, '');
+        if (key) {
+  let v = val.join(':').trim();
+  if ((v.startsWith("'") && v.endsWith("'")) || (v.startsWith('"') && v.endsWith('"'))) {
+    v = v.slice(1, -1);
+  }
+  meta[key.trim()] = v;
+}
       });
     }
 
