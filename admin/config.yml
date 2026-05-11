@@ -2,7 +2,7 @@ backend:
   name: github
   repo: ixia00/ixia00.github.io
   branch: main
-
+  base_url: https://harmonious-raindrop-fb587f.netlify.app
 
 media_folder: "img"
 public_folder: "img"
