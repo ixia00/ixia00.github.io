@@ -104,8 +104,8 @@ async function loadPost() {
 
     const renderer = new marked.Renderer();
     const div = document.createElement('div');
-    div.innerHTML = body.replace(/\n/g, '<br>');
-    const html = div.innerHTML;
+    div.innerHTML = body.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+    const html = '<p>' + div.innerHTML + '</p>';
 
     el.innerHTML = `
       <header class="post-header">
