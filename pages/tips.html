@@ -83,25 +83,75 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/tips-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-/* 글 목록 + 태그 필터 자동 생성 — 건드리지 않아도 돼! */
-
 const listEl = document.getElementById('tips-list');
 const tagsEl = document.getElementById('tips-tags');
+const REPO = 'ixia00/ixia00.github.io';
+const FOLDER = '_tips';
+let allPosts = [];
 let activeTag = 'all';
 
-/* 모든 태그 수집 */
-const allTags = ['all', ...new Set(TIPS_DATA.flatMap(p => p.tags))];
+async function loadPosts() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
+    const files = await res.json();
+    const mdFiles = files.filter(f => f.name.endsWith('.md') && !f.name.startsWith('.'));
 
-/* 태그 버튼 생성 */
+    const posts = await Promise.all(mdFiles.map(async file => {
+      const r = await fetch(file.download_url);
+      const text = await r.text();
+      return parseFrontmatter(text, file.name);
+    }));
+
+    allPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    renderTags();
+    renderList();
+  } catch(e) {
+    listEl.innerHTML = '<li class="tips-empty">불러오는 중 오류가 발생했습니다.</li>';
+  }
+}
+
+function parseFrontmatter(text, filename) {
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  const meta = {};
+  if (match) {
+    match[1].split('\n').forEach(line => {
+      const [key, ...val] = line.split(':');
+      if (key) meta[key.trim()] = val.join(':').trim().replace(/^'|'$/g, '').replace(/^"|"$/g, '');
+    });
+  }
+  /* 태그 파싱 */
+  let tags = [];
+  if (meta.tags) {
+    try {
+      tags = JSON.parse(meta.tags.replace(/'/g, '"'));
+    } catch {
+      tags = meta.tags.replace(/[\[\]]/g, '').split(',').map(t => t.trim().replace(/^'|'$/g, ''));
+    }
+  }
+  return {
+    title: meta.title || filename,
+    date: meta.date || '',
+    summary: meta.summary || '',
+    tags: tags,
+    slug: filename.replace('.md', '')
+  };
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+}
+
 function renderTags() {
+  const allTags = ['all', ...new Set(allPosts.flatMap(p => p.tags))];
   tagsEl.innerHTML = allTags.map(tag => `
     <button class="tag-btn ${tag === activeTag ? 'active' : ''}" data-tag="${tag}">
-      ${tag === 'all' ? 'All' : tag}
+      ${tag === 'all' ? 'All' : '#' + tag}
     </button>
   `).join('');
-
   tagsEl.querySelectorAll('.tag-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       activeTag = this.dataset.tag;
@@ -111,15 +161,13 @@ function renderTags() {
   });
 }
 
-/* 글 목록 생성 */
 function renderList() {
   const query = document.getElementById('tips-search').value.trim().toLowerCase();
-  const filtered = TIPS_DATA.filter(p => {
+  const filtered = allPosts.filter(p => {
     const matchTag = activeTag === 'all' || p.tags.includes(activeTag);
-    const matchSearch = query === '' || 
-      p.title.toLowerCase().includes(query) || 
-      p.summary.toLowerCase().includes(query) ||
-      p.content.toLowerCase().includes(query);
+    const matchSearch = query === '' ||
+      p.title.toLowerCase().includes(query) ||
+      p.summary.toLowerCase().includes(query);
     return matchTag && matchSearch;
   });
 
@@ -130,16 +178,16 @@ function renderList() {
 
   listEl.innerHTML = filtered.map(post => `
     <li class="tips-item">
-      <a href="tips-post.html?id=${post.id}" class="tips-item-link">
+      <a href="tips-post.html?slug=${post.slug}" class="tips-item-link">
         <div class="tips-item-main">
           <p class="tips-item-title">${post.title}</p>
           <p class="tips-item-summary">${post.summary}</p>
           <div class="tips-item-tags">
-            ${post.tags.map(t => `<span class="tips-tag">${t}</span>`).join('')}
+            ${post.tags.map(t => `<span class="tips-tag">#${t}</span>`).join('')}
           </div>
         </div>
         <div class="tips-item-right">
-          <span class="tips-item-date">${post.date}</span>
+          <span class="tips-item-date">${formatDate(post.date)}</span>
           <span class="tips-item-arrow">→</span>
         </div>
       </a>
@@ -147,11 +195,8 @@ function renderList() {
   `).join('');
 }
 
-/* 검색창 입력 시 실시간 반영 */
 document.getElementById('tips-search').addEventListener('input', renderList);
-
-renderTags();
-renderList();
+loadPosts();
 </script>
 
 </body>

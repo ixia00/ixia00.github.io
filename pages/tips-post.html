@@ -64,37 +64,64 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/tips-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-/* 글 상세 페이지 자동 로드 — 건드리지 않아도 돼! */
-
-/* URL에서 id 값 읽기 */
-const params = new URLSearchParams(window.location.search);
-const id = parseInt(params.get('id'));
-const post = TIPS_DATA.find(p => p.id === id);
+const REPO = 'ixia00/ixia00.github.io';
+const FOLDER = '_tips';
 const el = document.getElementById('post-content');
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('slug');
 
-if (post) {
-  /* 브라우저 탭 제목 변경 */
-  document.title = post.title + ' — iXia';
+async function loadPost() {
+  try {
+    const rawUrl = `https://raw.githubusercontent.com/${REPO}/main/${FOLDER}/${encodeURIComponent(slug)}.md`;
+    const res = await fetch(rawUrl);
+    const text = await res.text();
 
-  el.innerHTML = `
-    <header class="post-header">
-      <div class="post-meta">
-        <span class="post-date">${post.date}</span>
-        <div class="tips-item-tags">
-          ${post.tags.map(t => `<span class="tips-tag">${t}</span>`).join('')}
+    const match = text.match(/^---\n([\s\S]*?)\n---/);
+    const meta = {};
+    if (match) {
+      match[1].split('\n').forEach(line => {
+        const [key, ...val] = line.split(':');
+        if (key) meta[key.trim()] = val.join(':').trim().replace(/^'|'$/g, '').replace(/^"|"$/g, '');
+      });
+    }
+
+    let tags = [];
+    if (meta.tags) {
+      try {
+        tags = JSON.parse(meta.tags.replace(/'/g, '"'));
+      } catch {
+        tags = meta.tags.replace(/[\[\]]/g, '').split(',').map(t => t.trim().replace(/^'|'$/g, ''));
+      }
+    }
+
+    const body = text.replace(/^---[\s\S]*?---\n/, '');
+    const d = new Date(meta.date);
+    const dateStr = meta.date ? `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}` : '';
+
+    document.title = (meta.title || slug) + ' — iXia';
+    marked.setOptions({ headerIds: false, mangle: false });
+    const html = marked.parse(body);
+
+    el.innerHTML = `
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-date">${dateStr}</span>
+          <div class="tips-item-tags">
+            ${tags.map(t => `<span class="tips-tag">#${t}</span>`).join('')}
+          </div>
         </div>
-      </div>
-      <h1 class="post-title">${post.title}</h1>
-    </header>
-    <div class="post-body">
-      ${post.content}
-    </div>
-  `;
-} else {
-  el.innerHTML = '<p class="post-loading">글을 찾을 수 없습니다.</p>';
+        <h1 class="post-title">${meta.title || slug}</h1>
+      </header>
+      <div class="post-body">${html}</div>
+    `;
+  } catch(e) {
+    el.innerHTML = '<p class="post-loading">글을 찾을 수 없습니다.</p>';
+  }
 }
+
+loadPost();
 </script>
 
 </body>
