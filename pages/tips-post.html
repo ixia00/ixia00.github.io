@@ -88,13 +88,13 @@ async function loadPost() {
     }
 
     let tags = [];
-    if (meta.tags) {
-      try {
-        tags = JSON.parse(meta.tags.replace(/'/g, '"'));
-      } catch {
-        tags = meta.tags.replace(/[\[\]]/g, '').split(',').map(t => t.trim().replace(/^'|'$/g, ''));
-      }
-    }
+const tagLines = text.match(/^tags:\n((?:\s+-\s+.+\n?)+)/m);
+if (tagLines) {
+  tags = tagLines[1]
+    .split('\n')
+    .filter(l => l.trim().startsWith('-'))
+    .map(l => l.replace(/^\s+-\s+['"]?#?/, '').replace(/['"]$/, '').trim());
+}
 
     const body = text.replace(/^---[\s\S]*?---\n/, '');
     const d = new Date(meta.date);
