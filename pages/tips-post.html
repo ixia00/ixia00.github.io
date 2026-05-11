@@ -103,8 +103,9 @@ async function loadPost() {
     document.title = (meta.title || slug) + ' — iXia';
 
     const renderer = new marked.Renderer();
-    marked.use({ breaks: true, gfm: true });
-    const html = marked.parse(body, { renderer });
+    const div = document.createElement('div');
+    div.innerHTML = body.replace(/\n/g, '<br>');
+    const html = div.innerHTML;
 
     el.innerHTML = `
       <header class="post-header">
