@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Character — iXia</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/character.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="nav-logo">iXia</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="character.html" class="active">Character</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mob-menu">
+  <a href="../index.html">Home</a>
+  <a href="music.html">Music</a>
+  <a href="tips.html">Tips</a>
+  <a href="character.html">Character</a>
+  <a href="download.html">Download</a>
+</nav>
+
+<main>
+
+  <div class="page-header">
+    <div class="wrap">
+      <span class="sec-en">Voice Banks</span>
+      <h1 class="page-title">Character</h1>
+      <p class="page-desc">보유 음성합성 캐릭터 목록입니다.</p>
+      <p class="page-desc">작성된 음역대는 공식의 권장 음역대가 아닌 제 경험을 토대로 작성한 '들을만함'에 초점을 맞춘 음역대 입니다.</p>
+      <p class="page-desc">테스트 음원의 음역은 C1 - C6 입니다.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- 캐릭터 그리드 (JS가 자동으로 생성) -->
+    <div class="chara-grid" id="chara-grid"></div>
+  </div>
+
+  <div class="wrap">
+  <p class="chara-disclaimer">
+    Character illustrations are the property of their respective owners. This is a non-profit fan website.
+  </p>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-name">iXia</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/iXIA_00" target="_blank">X / Twitter</a>
+        <a href="https://youtube.com/@ixia00" target="_blank">YouTube</a>
+        <a href="https://www.nicovideo.jp/user/136156987" target="_blank">NicoNico</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 iXia. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/character-data.js"></script>
+<script>
+/* 캐릭터 그리드 자동 생성 — 건드리지 않아도 돼! */
+const grid = document.getElementById('chara-grid');
+
+grid.innerHTML = CHARACTER_DATA.map(chara => {
+
+  /* 엔진 뱃지 */
+  const badges = chara.engines.map(e =>
+    `<span class="chara-engine-badge">${e}</span>`
+  ).join('');
+
+  /* 라이브러리 목록 */
+  const libs = chara.libraries.map(lib => {
+
+    /* 샘플 재생 버튼 */
+    const sampleBtn = lib.sample
+      ? `<button class="chara-sample-btn" onclick="playSample('${lib.sample}', this)" aria-label="샘플 재생">
+           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+             <path d="M8 5v14l11-7z"/>
+           </svg>
+         </button>`
+      : '';
+
+    const libName = lib.name ? `<span class="lib-name">${lib.name}</span>` : '';
+    const range = lib.range ? `<span class="lib-range">${lib.range}</span>` : '';
+
+    return `
+  <div class="chara-lib">
+    <div class="chara-lib-left">
+      ${libName}
+    </div>
+        <div class="chara-lib-right">
+          ${range}
+          ${sampleBtn}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="chara-card" id="${chara.id}">
+
+      <!-- 이미지 영역 -->
+      <div class="chara-img-wrap">
+        <img class="chara-img" src="${chara.image}" alt="${chara.name}"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <!-- 이미지 없을 때 플레이스홀더 -->
+        <div class="chara-img-ph" style="display:none;">
+          <span>${chara.name.charAt(0)}</span>
+        </div>
+        <!-- 엔진 뱃지 (이미지 위에 표시) -->
+        <div class="chara-badges">${badges}</div>
+      </div>
+
+      <!-- 캐릭터 이름 -->
+      <div class="chara-info">
+        <h2 class="chara-name">${chara.name}</h2>
+
+        <!-- 라이브러리 목록 -->
+        <div class="chara-libs">
+          ${libs}
+        </div>
+      </div>
+
+    </div>
+  `;
+}).join('');
+
+/* 샘플 음원 재생 */
+let currentAudio = null;
+let currentBtn = null;
+
+function playSample(src, btn) {
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentBtn.classList.remove('playing');
+    if (currentBtn === btn) {
+      currentAudio = null;
+      currentBtn = null;
+      return;
+    }
+  }
+  currentAudio = new Audio(src);
+  currentBtn = btn;
+  currentAudio.play();
+  btn.classList.add('playing');
+  currentAudio.onended = function() {
+    btn.classList.remove('playing');
+    currentAudio = null;
+    currentBtn = null;
+  };
+}
+</script>
+
+</body>
+</html>

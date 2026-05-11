@@ -1,0 +1,250 @@
+/* ============================================================
+   music.css — Music 페이지 전용 스타일
+============================================================ */
+
+/* ─── 페이지 헤더 ─────────────────────────────────────────── */
+.page-header {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--line);
+}
+.page-title {
+  font-family: var(--font-en);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 200;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 6px 0 10px;
+}
+.page-desc {
+  font-size: 13px;
+  color: var(--sub);
+}
+
+/* ─── 곡 목록 ────────────────────────────────────────────── */
+.music-list {
+  padding: 40px 0;
+}
+
+/* ─── 곡 카드: 4열 구조 ──────────────────────────────────── */
+.music-card {
+  display: grid;
+  grid-template-columns: 180px 1fr 110px 100px;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+.music-card:first-child {
+  border-top: 1px solid var(--line);
+}
+
+/* ─── 1열: 유튜브 썸네일 ─────────────────────────────────── */
+.music-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.music-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--ease);
+}
+.music-thumb:hover .music-thumb-overlay { opacity: 1; }
+.play-circle {
+  width: 44px; height: 44px;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--ease);
+}
+.play-circle:hover { background: rgba(255,255,255,0.15); }
+
+/* ─── 2열: 곡 정보 + 원곡 정보 ──────────────────────────── */
+.music-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+.music-title {
+  font-family: var(--font-en);
+  font-size: 16px;
+  font-weight: 400;     /* 300 → 400 */
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.music-voca {
+  font-size: 13px;      /* 12px → 13px */
+  color: var(--sub);
+}
+
+/* 원곡 정보 블록 */
+.music-original-block {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.music-original-label {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.music-original-name {
+  font-size: 12px;
+  color: var(--sub);
+  line-height: 1.5;
+}
+
+/* 원곡 링크: 아이콘 가로 나열 */
+.music-original-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* 원곡 링크 아이콘 버튼 */
+.orig-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  transition: all var(--ease);
+  border-radius: 2px;
+}
+.orig-icon:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+/* 유튜브 호버 */
+.orig-icon.yt:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+/* 니코동 호버 */
+.orig-icon.nico:hover {
+  border-color: #252525;
+  color: #252525;
+}
+
+/* ─── 3열: 내 커버 링크 (버튼) ───────────────────────────── */
+.music-cover-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 2px;
+}
+.music-col-label {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+  display: block;
+}
+
+/* 커버 버튼 공통 */
+.cover-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  color: var(--sub);
+  transition: all var(--ease);
+  width: 100%;
+}
+.cover-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.cover-btn.yt:hover {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+.cover-btn.nico:hover {
+  border-color: #252525;
+  color: #252525;
+}
+
+/* ─── 4열: VPR 다운로드 (버튼) ───────────────────────────── */
+.music-vpr-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 2px;
+}
+
+/* VPR 버튼 */
+.vpr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--text);
+  color: var(--white);
+  border: 1px solid var(--text);
+  transition: all var(--ease);
+  width: 100%;
+  cursor: pointer;
+}
+.vpr-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.music-credit {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ─── 반응형 ─────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .music-card {
+    grid-template-columns: 160px 1fr 100px;
+  }
+  .music-vpr-links {
+    grid-column: 3;
+    grid-row: 2;
+  }
+}
+@media (max-width: 600px) {
+  .music-card {
+    grid-template-columns: 1fr 1fr;
+  }
+  .music-thumb {
+    grid-column: 1 / -1;
+  }
+  .music-info {
+    grid-column: 1 / -1;
+  }
+}

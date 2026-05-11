@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music — iXia</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/music.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="nav-logo">iXia</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="music.html" class="active">Music</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="character.html">Character</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mob-menu">
+  <a href="../index.html">Home</a>
+  <a href="music.html">Music</a>
+  <a href="tips.html">Tips</a>
+  <a href="character.html">Character</a>
+  <a href="download.html">Download</a>
+</nav>
+
+<main>
+
+  <div class="page-header">
+    <div class="wrap">
+      <span class="sec-en">Music</span>
+      <h1 class="page-title">Cover Songs</h1>
+      <p class="page-desc">커버곡 목록입니다.</p>
+      <p class="page-desc">조교有 vpr은 커버시킨 캐릭터에 맞추어 노트를 찍고 조교가 된 상태의 파일입니다.</p>
+      <p class="page-desc">타 캐릭터 커버에는 조교無 vpr 사용을 추천드립니다.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="music-list">
+
+      <!--
+        ══════════════════════════════════════════
+        ✏️ 곡 카드 추가 방법:
+        <li class="music-card"> 블록 통째로 복사해서 추가.
+
+        유튜브 썸네일:
+        유튜브 URL https://www.youtube.com/watch?v=ABC123 에서
+        ABC123 부분을 data-ytid="" 안에 넣으면 자동으로 썸네일 뜸!
+
+        없는 링크는 해당 <a> 태그 줄만 삭제.
+        VPR 없으면 <div class="music-vpr-links"> 블록 전체 삭제하고
+        대신 <div></div> 로 빈 칸 유지해줘.
+        ══════════════════════════════════════════
+      -->
+
+      <li class="music-card">
+
+        <!-- 1열: 썸네일 -->
+        <!-- ✏️ data-ytid 에 유튜브 영상 ID, href 에도 똑같이 -->
+        <div class="music-thumb" data-ytid="https://www.youtube.com/watch?v=sS2shyVDk-8">
+          <div class="music-thumb-overlay">
+            <a href="https://www.youtube.com/watch?v=sS2shyVDk-8" target="_blank" class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2열: 곡 정보 + 원곡 -->
+        <div class="music-info">
+          <!-- ✏️ 곡 제목 -->
+          <p class="music-title">【Lily】 　傷だらけの設計図　【VOCALOID カバー】</p>
+          <!-- ✏️ 사용 보컬로이드 -->
+          <p class="music-voca">Lily</p>
+          <p class="music-credit">original : ieong | illust : SE</p>
+
+          <div class="music-original-block">
+            <p class="music-original-label">Original</p>
+            <!-- ✏️ 작곡가 — 원곡 제목 -->
+            <p class="music-original-name">傷だらけの設計図 feat. 花響琴(SV2)</p>
+
+            <!-- 원곡 링크: 아이콘으로 -->
+            <div class="music-original-links">
+
+              <!-- ✏️ 원곡 유튜브 없으면 이 <a> 삭제 -->
+              <a href="https://www.youtube.com/watch?v=Ci1-7SVR8ig" target="_blank" class="orig-icon yt" title="원곡 YouTube">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              <!-- ✏️ 원곡 니코동 없으면 이 <a> 삭제 -->
+              <a href="https://www.nicovideo.jp/watch/sm46183074" target="_blank" class="orig-icon nico" title="원곡 NicoNico">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3열: 내 커버 링크 버튼 -->
+        <div class="music-cover-links">
+          <span class="music-col-label">Cover</span>
+
+          <!-- ✏️ 내 유튜브 없으면 삭제 -->
+          <a href="https://www.youtube.com/watch?v=sS2shyVDk-8" target="_blank" class="cover-btn yt">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+
+          <!-- ✏️ 내 니코동 없으면 삭제 -->
+          <a href="https://www.nicovideo.jp/watch/sm46200345" target="_blank" class="cover-btn nico">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+            </svg>
+            NicoNico
+          </a>
+        </div>
+
+        <!-- 4열: VPR 다운로드 버튼 (최대 2개) -->
+        <!-- ✏️ VPR 없으면 이 블록 전체 지우고 <div></div> 로 대체 -->
+        <div class="music-vpr-links">
+          <span class="music-col-label">VPR</span>
+
+          <!-- ✏️ VPR 1: href 에 파일 링크, 텍스트에 캐릭터명 -->
+          <a href="../vpr/scarred_blueprint.vpr" download class="vpr-btn">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            조교有
+          </a>
+        </div>
+
+      </li>      
+
+      <li class="music-card">
+
+        <!-- 1열: 썸네일 -->
+        <!-- ✏️ data-ytid 에 유튜브 영상 ID, href 에도 똑같이 -->
+        <div class="music-thumb" data-ytid="https://www.youtube.com/watch?v=BzoQyNTZdUY">
+          <div class="music-thumb-overlay">
+            <a href="https://www.youtube.com/watch?v=BzoQyNTZdUY" target="_blank" class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2열: 곡 정보 + 원곡 -->
+        <div class="music-info">
+          <!-- ✏️ 곡 제목 -->
+          <p class="music-title">【vy1】　ロスタイムメモリー　【VOCALOID カバー】</p>
+          <!-- ✏️ 사용 보컬로이드 -->
+          <p class="music-voca">vy1</p>
+          <p class="music-credit">original : じん | illust : SE</p>
+
+          <div class="music-original-block">
+            <p class="music-original-label">Original</p>
+            <!-- ✏️ 작곡가 — 원곡 제목 -->
+            <p class="music-original-name">【IA】ロスタイムメモリー【オリジナルMV】</p>
+
+            <!-- 원곡 링크: 아이콘으로 -->
+            <div class="music-original-links">
+
+              <!-- ✏️ 원곡 유튜브 없으면 이 <a> 삭제 -->
+              <a href="https://www.youtube.com/watch?v=yJTQuDCnMjg" target="_blank" class="orig-icon yt" title="원곡 YouTube">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              <!-- ✏️ 원곡 니코동 없으면 이 <a> 삭제 -->
+              <a href="https://www.nicovideo.jp/watch/sm20470051" target="_blank" class="orig-icon nico" title="원곡 NicoNico">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3열: 내 커버 링크 버튼 -->
+        <div class="music-cover-links">
+          <span class="music-col-label">Cover</span>
+
+          <!-- ✏️ 내 유튜브 없으면 삭제 -->
+          <a href="https://www.youtube.com/watch?v=BzoQyNTZdUY" target="_blank" class="cover-btn yt">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+
+          <!-- ✏️ 내 니코동 없으면 삭제 -->
+          <a href="https://www.nicovideo.jp/watch/sm45849263" target="_blank" class="cover-btn nico">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+            </svg>
+            NicoNico
+          </a>
+        </div>
+
+        <!-- 4열: VPR 다운로드 버튼 (최대 2개) -->
+        <!-- ✏️ VPR 없으면 이 블록 전체 지우고 <div></div> 로 대체 -->
+        <div class="music-vpr-links">
+          <span class="music-col-label">VPR</span>
+
+          <!-- ✏️ VPR 1: href 에 파일 링크, 텍스트에 캐릭터명 -->
+          <a href="../vpr/ロスタイムメモリー.vpr" download class="vpr-btn">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            조교有
+          </a>
+        </div>
+
+      </li>
+
+
+      <li class="music-card">
+
+        <!-- 1열: 썸네일 -->
+        <!-- ✏️ data-ytid 에 유튜브 영상 ID, href 에도 똑같이 -->
+        <div class="music-thumb" data-ytid="https://www.youtube.com/watch?v=zkWim0RC0pw">
+          <div class="music-thumb-overlay">
+            <a href="https://www.youtube.com/watch?v=zkWim0RC0pw" target="_blank" class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2열: 곡 정보 + 원곡 -->
+        <div class="music-info">
+          <!-- ✏️ 곡 제목 -->
+          <p class="music-title">【巡音ルカ】 ロストエンファウンド （feat.神威がくぽ）【VOCALOID カバー】</p>
+          <!-- ✏️ 사용 보컬로이드 -->
+          <p class="music-voca">메구리네 루카, 카무이 가쿠포</p>
+          <p class="music-credit">original : sasakure.UK | illust : SE</p>
+
+          <div class="music-original-block">
+            <p class="music-original-label">Original</p>
+            <!-- ✏️ 작곡가 — 원곡 제목 -->
+            <p class="music-original-name">sasakure. UK - ロストエンファウンド feat.初音ミク</p>
+
+            <!-- 원곡 링크: 아이콘으로 -->
+            <div class="music-original-links">
+
+              <!-- ✏️ 원곡 유튜브 없으면 이 <a> 삭제 -->
+              <a href="https://www.youtube.com/watch?v=l7tqkjBKjkw" target="_blank" class="orig-icon yt" title="원곡 YouTube">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              <!-- ✏️ 원곡 니코동 없으면 이 <a> 삭제 -->
+              <a href="https://www.nicovideo.jp/watch/sm11323864" target="_blank" class="orig-icon nico" title="원곡 NicoNico">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3열: 내 커버 링크 버튼 -->
+        <div class="music-cover-links">
+          <span class="music-col-label">Cover</span>
+
+          <!-- ✏️ 내 유튜브 없으면 삭제 -->
+          <a href="https://www.youtube.com/watch?v=zkWim0RC0pw" target="_blank" class="cover-btn yt">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+
+          <!-- ✏️ 내 니코동 없으면 삭제 -->
+          <a href="https://www.nicovideo.jp/watch/sm45804510" target="_blank" class="cover-btn nico">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+            </svg>
+            NicoNico
+          </a>
+        </div>
+
+        <!-- 4열: VPR 다운로드 버튼 (최대 2개) -->
+        <!-- ✏️ VPR 없으면 이 블록 전체 지우고 <div></div> 로 대체 -->
+        <div class="music-vpr-links">
+          <span class="music-col-label">VPR</span>
+
+          <!-- ✏️ VPR 1: href 에 파일 링크, 텍스트에 캐릭터명 -->
+          <a href="../vpr/ロストエンファウンド.vpr" download class="vpr-btn">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            조교有
+          </a>
+        </div>
+
+      </li>
+
+
+      <li class="music-card">
+
+        <!-- 1열: 썸네일 -->
+        <!-- ✏️ data-ytid 에 유튜브 영상 ID, href 에도 똑같이 -->
+        <div class="music-thumb" data-ytid="https://www.youtube.com/watch?v=XcW8-gahGv8">
+          <div class="music-thumb-overlay">
+            <a href="https://www.youtube.com/watch?v=XcW8-gahGv8" target="_blank" class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2열: 곡 정보 + 원곡 -->
+        <div class="music-info">
+          <!-- ✏️ 곡 제목 -->
+          <p class="music-title">【Chika•kokone】 アカツキアライヴァル 【VOCALOID カバー】</p>
+          <!-- ✏️ 사용 보컬로이드 -->
+          <p class="music-voca">Chika, kokone</p>
+          <p class="music-credit">original : Last Note | illust : SE</p>
+
+          <div class="music-original-block">
+            <p class="music-original-label">Original</p>
+            <!-- ✏️ 작곡가 — 원곡 제목 -->
+            <p class="music-original-name">【初音ミク・巡音ルカ】アカツキアライヴァル【オリジナル】</p>
+
+            <!-- 원곡 링크: 아이콘으로 -->
+            <div class="music-original-links">
+
+              <!-- ✏️ 원곡 유튜브 없으면 이 <a> 삭제 -->
+              <a href="https://www.youtube.com/watch?v=m3VV0bahY08" target="_blank" class="orig-icon yt" title="원곡 YouTube">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              <!-- ✏️ 원곡 니코동 없으면 이 <a> 삭제 -->
+              <a href="https://www.nicovideo.jp/watch/sm17064620" target="_blank" class="orig-icon nico" title="원곡 NicoNico">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3열: 내 커버 링크 버튼 -->
+        <div class="music-cover-links">
+          <span class="music-col-label">Cover</span>
+
+          <!-- ✏️ 내 유튜브 없으면 삭제 -->
+          <a href="https://www.youtube.com/watch?v=XcW8-gahGv8" target="_blank" class="cover-btn yt">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+
+          <!-- ✏️ 내 니코동 없으면 삭제 -->
+          <a href="https://www.nicovideo.jp/watch/sm45745721?ref=garage_share_other" target="_blank" class="cover-btn nico">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+            </svg>
+            NicoNico
+          </a>
+        </div>
+
+        <!-- 4열: VPR 다운로드 버튼 (최대 2개) -->
+        <!-- ✏️ VPR 없으면 이 블록 전체 지우고 <div></div> 로 대체 -->
+        <div class="music-vpr-links">
+          <span class="music-col-label">VPR</span>
+
+          <!-- ✏️ VPR 2: 없으면 이 줄 삭제 -->
+          <a href="../vpr/アカツキアライヴァル.vpr" download class="vpr-btn">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            조교有
+          </a>
+        </div>
+
+      </li>
+
+
+      <!-- ── 곡 카드 1 ── -->
+      <li class="music-card">
+
+        <!-- 1열: 썸네일 -->
+        <!-- ✏️ data-ytid 에 유튜브 영상 ID, href 에도 똑같이 -->
+        <div class="music-thumb" data-ytid="https://youtu.be/uq3kigEfD44?si=81igmuuH_SOwaWTn">
+          <div class="music-thumb-overlay">
+            <a href="https://youtu.be/uq3kigEfD44?si=81igmuuH_SOwaWTn" target="_blank" class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2열: 곡 정보 + 원곡 -->
+        <div class="music-info">
+          <!-- ✏️ 곡 제목 -->
+          <p class="music-title">
+【VOCALOID 8人】 Connecting / Vocalist ver. 【VOCALOIDカバー】　【Collabration】</p>
+          <!-- ✏️ 사용 보컬로이드 -->
+          <p class="music-voca">하츠네 미쿠, 카가미네 렌, 히비키 코토, 메구리네 루카, 카무이 가쿠포, KAITO, Fuiro, 오토마치 우나</p>
+          <p class="music-credit">original : halyosy | illust : SE | vocaloid tuning : iXia, 이여님, 녹차녹, Noah Pluto, onttann, whitespace</p>
+
+          <div class="music-original-block">
+            <p class="music-original-label">Original</p>
+            <!-- ✏️ 작곡가 — 원곡 제목 -->
+            <p class="music-original-name">【ニコニコラボ】Connecting【Vocalist】</p>
+
+            <!-- 원곡 링크: 아이콘으로 -->
+            <div class="music-original-links">
+
+              <!-- ✏️ 원곡 유튜브 없으면 이 <a> 삭제 -->
+              <a href="https://www.youtube.com/watch?v=jCQuNYbKGe4" target="_blank" class="orig-icon yt" title="원곡 YouTube">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+
+              <!-- ✏️ 원곡 니코동 없으면 이 <a> 삭제 -->
+              <a href="https://www.nicovideo.jp/watch/sm25055817" target="_blank" class="orig-icon nico" title="원곡 NicoNico">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3열: 내 커버 링크 버튼 -->
+        <div class="music-cover-links">
+          <span class="music-col-label">Cover</span>
+
+          <!-- ✏️ 내 유튜브 없으면 삭제 -->
+          <a href="https://www.youtube.com/watch?v=uq3kigEfD44" target="_blank" class="cover-btn yt">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+
+        </div>
+
+      </li>
+
+      <!-- ── 곡 카드 2 (VPR 없는 예시) ── -->
+      <li class="music-card">
+        <div class="music-thumb" data-ytid="https://youtu.be/DM1P7F4XbEo?si=sBY_mTKWQKB-mCWy">
+          <div class="music-thumb-overlay">
+            <a href="https://youtu.be/DM1P7F4XbEo?si=sBY_mTKWQKB-mCWy" target="_blank" class="play-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="music-info">
+          <p class="music-title">
+【Lily】　If 【VOCALOIDカバー】</p>
+          <p class="music-voca">Lily</p>
+          <p class="music-credit">original : 無力p | illust : SE</p>
+          <div class="music-original-block">
+            <p class="music-original-label">Original</p>
+            <p class="music-original-name">【巡音ルカ】 If 【オリジナル】</p>
+            <div class="music-original-links">
+              
+              <a href="https://www.nicovideo.jp/watch/sm13833432" target="_blank" class="orig-icon nico" title="원곡 NicoNico">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="music-cover-links">
+          <span class="music-col-label">Cover</span>
+          <a href="https://youtu.be/DM1P7F4XbEo?si=sBY_mTKWQKB-mCWy" target="_blank" class="cover-btn yt">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            YouTube
+          </a>
+          
+        </div>
+        <!-- VPR 없는 경우: 빈 div로 4열 자리 유지 -->
+        <div></div>
+      </li>
+
+    </ul>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-name">iXia</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/iXIA_00" target="_blank">X / Twitter</a>
+        <a href="https://youtube.com/@ixia00" target="_blank">YouTube</a>
+        <a href="https://www.nicovideo.jp/user/136156987" target="_blank">NicoNico</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 iXia. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  /* 유튜브 썸네일 자동 로드 — 건드리지 않아도 돼! */
+  document.querySelectorAll('.music-thumb[data-ytid]').forEach(function(el) {
+    var input = el.getAttribute('data-ytid');
+    var id = '';
+    if (input.includes('v=')) {
+      /* https://www.youtube.com/watch?v=ABC123 형식 */
+      id = input.split('v=')[1].split('&')[0];
+    } else if (input.includes('youtu.be/')) {
+      /* https://youtu.be/ABC123 형식 */
+      id = input.split('youtu.be/')[1].split('?')[0];
+    } else {
+      /* ID만 넣은 경우 */
+      id = input;
+    }
+    if (id) {
+      el.style.backgroundImage = 'url(https://img.youtube.com/vi/' + id + '/mqdefault.jpg)';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+  });
+</script>
+
+</body>
+</html>

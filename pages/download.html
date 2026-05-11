@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download — iXia</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/download.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="nav-logo">iXia</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="character.html">Character</a></li>
+        <li><a href="download.html" class="active">Download</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mob-menu">
+  <a href="../index.html">Home</a>
+  <a href="music.html">Music</a>
+  <a href="tips.html">Tips</a>
+  <a href="character.html">Character</a>
+  <a href="download.html">Download</a>
+</nav>
+
+<main>
+
+  <div class="page-header">
+    <div class="wrap">
+      <span class="sec-en">Files</span>
+      <h1 class="page-title">Download</h1>
+      <!--
+        ✏️ 비공개 배포 관련 주의사항 있으면 여기에 추가해.
+        예: 비상업적 이용만 가능, 2차 배포 금지 등
+      -->
+      <p class="page-desc">비상업적 이용에 한해 자유롭게 사용하실 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- 목록 (JS가 자동으로 생성) -->
+    <ul class="dl-list" id="dl-list"></ul>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-name">iXia</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/iXIA_00" target="_blank">X / Twitter</a>
+        <a href="https://youtube.com/@ixia00" target="_blank">YouTube</a>
+        <a href="https://www.nicovideo.jp/user/136156987" target="_blank">NicoNico</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 iXia. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/download-data.js"></script>
+<script>
+/* 다운로드 목록 자동 생성 — 건드리지 않아도 돼! */
+const listEl = document.getElementById('dl-list');
+
+listEl.innerHTML = DOWNLOAD_DATA.map(item => `
+  <li class="dl-item">
+    <a href="download-post.html?id=${item.id}" class="dl-item-link">
+      <div class="dl-item-main">
+        <p class="dl-item-title">${item.title}</p>
+        <p class="dl-item-summary">${item.summary}</p>
+      </div>
+      <div class="dl-item-right">
+        <span class="dl-item-date">${item.date}</span>
+        <span class="dl-item-arrow">→</span>
+      </div>
+    </a>
+  </li>
+`).join('');
+</script>
+
+</body>
+</html>

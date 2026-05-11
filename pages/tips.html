@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tips — iXia</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/tips.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="nav-logo">iXia</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="tips.html" class="active">Tips</a></li>
+        <li><a href="character.html">Character</a></li>
+        <li><a href="download.html">Download</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mob-menu">
+  <a href="../index.html">Home</a>
+  <a href="music.html">Music</a>
+  <a href="tips.html">Tips</a>
+  <a href="character.html">Character</a>
+  <a href="download.html">Download</a>
+</nav>
+
+<main>
+
+  <div class="page-header">
+    <div class="wrap">
+      <span class="sec-en">How to</span>
+      <h1 class="page-title">Tips</h1>
+      <p class="page-desc">보컬 신스 관련 팁을 정리한 글 목록입니다.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- 검색창 -->
+  <div class="tips-search-wrap">
+  <input type="text" id="tips-search" class="tips-search" placeholder="검색어를 입력해주세요" />
+  <button class="tips-search-btn" onclick="renderList()" aria-label="검색">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.35-4.35"/>
+    </svg>
+  </button>
+</div>
+
+    <!-- 태그 필터 -->
+  <div class="tips-tags" id="tips-tags"></div>
+
+    <!-- 글 목록 (JS가 자동으로 생성해줘) -->
+    <ul class="tips-list" id="tips-list"></ul>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-name">iXia</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/iXIA_00" target="_blank">X / Twitter</a>
+        <a href="https://youtube.com/@ixia00" target="_blank">YouTube</a>
+        <a href="https://www.nicovideo.jp/user/136156987" target="_blank">NicoNico</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 iXia. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/tips-data.js"></script>
+<script>
+/* 글 목록 + 태그 필터 자동 생성 — 건드리지 않아도 돼! */
+
+const listEl = document.getElementById('tips-list');
+const tagsEl = document.getElementById('tips-tags');
+let activeTag = 'all';
+
+/* 모든 태그 수집 */
+const allTags = ['all', ...new Set(TIPS_DATA.flatMap(p => p.tags))];
+
+/* 태그 버튼 생성 */
+function renderTags() {
+  tagsEl.innerHTML = allTags.map(tag => `
+    <button class="tag-btn ${tag === activeTag ? 'active' : ''}" data-tag="${tag}">
+      ${tag === 'all' ? 'All' : tag}
+    </button>
+  `).join('');
+
+  tagsEl.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      activeTag = this.dataset.tag;
+      renderTags();
+      renderList();
+    });
+  });
+}
+
+/* 글 목록 생성 */
+function renderList() {
+  const query = document.getElementById('tips-search').value.trim().toLowerCase();
+  const filtered = TIPS_DATA.filter(p => {
+    const matchTag = activeTag === 'all' || p.tags.includes(activeTag);
+    const matchSearch = query === '' || 
+      p.title.toLowerCase().includes(query) || 
+      p.summary.toLowerCase().includes(query) ||
+      p.content.toLowerCase().includes(query);
+    return matchTag && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    listEl.innerHTML = '<li class="tips-empty">검색 결과가 없습니다.</li>';
+    return;
+  }
+
+  listEl.innerHTML = filtered.map(post => `
+    <li class="tips-item">
+      <a href="tips-post.html?id=${post.id}" class="tips-item-link">
+        <div class="tips-item-main">
+          <p class="tips-item-title">${post.title}</p>
+          <p class="tips-item-summary">${post.summary}</p>
+          <div class="tips-item-tags">
+            ${post.tags.map(t => `<span class="tips-tag">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="tips-item-right">
+          <span class="tips-item-date">${post.date}</span>
+          <span class="tips-item-arrow">→</span>
+        </div>
+      </a>
+    </li>
+  `).join('');
+}
+
+/* 검색창 입력 시 실시간 반영 */
+document.getElementById('tips-search').addEventListener('input', renderList);
+
+renderTags();
+renderList();
+</script>
+
+</body>
+</html>

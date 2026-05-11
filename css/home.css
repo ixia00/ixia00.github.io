@@ -1,0 +1,506 @@
+/* ============================================================
+   home.css — HOME 페이지 전용 스타일
+   
+   스케치 구조:
+   1. 히어로 (텍스트 왼쪽 + 오른쪽: 캐릭터 링크 박스 + NEWS 박스)
+   2. 보유 음성합성엔진 목록
+   3. TUNING TIPS 미리보기 (더보기 → TIPS 페이지)
+   4. COVERS 슬라이더 (더보기 → MUSIC 페이지)
+============================================================ */
+
+/* ════════════════════════════════════════════════
+   1. 히어로 섹션
+   ════════════════════════════════════════════════ */
+.hero {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+/*
+  레이아웃: 왼쪽(텍스트) + 오른쪽(사이드 박스 2개)
+  스케치에서 오른쪽에 '캐릭터 페이지로 이동' 박스와 'NEWS' 박스가 있었어.
+*/
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── 히어로 왼쪽: 텍스트 ── */
+.hero-text {}
+
+/* 아주 작은 영문 라벨 */
+.hero-kicker {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: block;
+}
+
+/*
+  ✏️ 메인 제목 수정: index.html의 <h1 class="hero-title"> 안
+  두 줄로 쓰고 싶으면 <br> 태그 사용.
+  <span class="h-accent">으로 감싸면 포인트 색상 강조.
+*/
+.hero-title {
+  font-family: var(--font-en);
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 300;     /* 200 → 300 */
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.hero-title .h-accent {
+  color: var(--accent);
+}
+
+/*
+  ✏️ 소개 문장 수정: index.html의 <p class="hero-desc"> 안
+*/
+.hero-desc {
+  font-size: 14px;      /* 13px → 14px */
+  color: var(--sub);
+  line-height: 2.0;     /* 1.9 → 2.0 */
+  max-width: 380px;
+  margin-bottom: 32px;
+}
+
+/* 버튼 묶음 */
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── 히어로 오른쪽: 사이드 박스들 ── */
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*
+  캐릭터 페이지 링크 박스
+  스케치: "이 사이에 CHARACTER 페이지로 이동"
+  
+  ✏️ 이미지 교체: <img src=""> 의 src 속성을 바꿔.
+  images/ 폴더에 이미지 파일을 넣고 경로 수정.
+*/
+.hero-chara-box {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--white);
+  transition: box-shadow var(--ease);
+}
+.hero-chara-box:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+/* 캐릭터 이미지 영역 */
+.hero-chara-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  background: #f0ede8;  /* 이미지 없을 때 배경 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 이미지 없을 때 표시 */
+.hero-chara-img.placeholder {
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 박스 하단 텍스트 바 */
+.hero-chara-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+}
+.hero-chara-bar span {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sub);
+}
+.hero-chara-bar .arrow {
+  font-size: 12px;
+  color: var(--muted);
+  transition: transform var(--ease), color var(--ease);
+}
+.hero-chara-box:hover .arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/*
+  NEWS 미니 박스
+  스케치: "NEWS 섹션 추가, n월 n일 ~추가됐습니다 설명 용도"
+  
+  ✏️ 뉴스 내용 수정: index.html의 .news-mini-list 안 <li> 수정.
+*/
+.news-mini-box {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 16px;
+}
+.news-mini-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.news-mini-head h3 {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--text);
+}
+.news-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.news-mini-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.news-mini-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.news-mini-date {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text);   /* muted → text (날짜 진하게) */
+  font-weight: 500;
+}
+.news-mini-text {
+  font-size: 13px;      /* 12px → 13px */
+  color: var(--text);   /* sub → text */
+  line-height: 1.7;
+}
+
+/* ── NEW 뱃지 ── */
+.badge-new {
+  font-family: var(--font-en);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  background: var(--accent);
+  color: var(--white);
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+/* ════════════════════════════════════════════════
+   2. 보유 음성합성엔진 섹션
+   스케치: VOCALOID 이름 + 캐릭터 이미지 섬네일 형태
+   ════════════════════════════════════════════════ */
+
+/*
+  ✏️ 보컬로이드 목록 수정: index.html의 <ul class="voca-list"> 안
+  각 <li>를 복사해서 추가/수정해.
+*/
+.voca-list {}
+
+.voca-item {
+  display: grid;
+  grid-template-columns: 24px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  transition: color var(--ease);
+  cursor: default;
+}
+.voca-item:first-child { border-top: 1px solid var(--line); }
+
+/* 왼쪽 번호 */
+.voca-num {
+  font-family: var(--font-en);
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  font-weight: 300;
+}
+
+/* 캐릭터 이름 */
+.voca-name {
+  font-size: 14px;
+  font-weight: 500;     /* 굵기 추가 */
+  letter-spacing: 0.03em;
+  transition: color var(--ease);
+}
+.voca-item:hover .voca-name { color: var(--accent); }
+
+/* 엔진 태그 (VOCALOID5, UTAU 등) */
+.voca-engine {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 2px 7px;
+}
+
+/* 오른쪽 화살표 */
+.voca-arrow {
+  font-size: 12px;
+  color: var(--line);
+  transition: color var(--ease), transform var(--ease);
+}
+.voca-item:hover .voca-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ════════════════════════════════════════════════
+   3. TUNING TIPS 미리보기
+   스케치: 목록 형태, 클릭하면 큰 페이지로 이동
+   ════════════════════════════════════════════════ */
+
+/*
+  ✏️ 팁 항목 수정: index.html의 <ul class="tips-list"> 안 <li>를 수정/추가.
+  각 항목을 클릭하면 TIPS 페이지로 이동해.
+*/
+.tips-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 항목 번호 (01, 02, 03...) */
+.tips-num {
+  font-family: var(--font-en);
+  font-size: 20px;
+  font-weight: 200;
+  color: var(--line);
+  line-height: 1;
+  text-align: right;
+}
+
+.tips-body {}
+
+/* 태그 (Basics, Mixing 등) */
+.tips-tag {
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+
+.tips-name {
+  font-size: 14px;
+  font-weight: 500;
+  transition: color var(--ease);
+}
+
+.tips-desc {
+  font-size: 12px;
+  color: var(--sub);
+  margin-top: 2px;
+}
+
+.tips-arrow {
+  font-size: 14px;
+  color: var(--line);
+  transition: all var(--ease);
+}
+
+/* ════════════════════════════════════════════════
+   4. COVERS 슬라이더
+   스케치: 가로로 슬라이딩, 재생 버튼 아이콘, 더보기 버튼
+   ════════════════════════════════════════════════ */
+
+/*
+  ✏️ 커버 곡 추가: index.html의 <div class="covers-track"> 블록을 복사해서 추가.
+  앨범 아트가 있으면: <img src="경로"> 를 .covers-thumb 안에 넣어.
+*/
+.covers-outer { position: relative; }
+
+/* 가로 스크롤 슬라이더 */
+.covers-track-list {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.covers-track-list::-webkit-scrollbar { display: none; }
+
+/* 카드 하나 */
+.covers-card {
+  flex: 0 0 172px;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+.covers-card:hover .covers-thumb-art { transform: scale(1.03); }
+
+/* 앨범 아트 영역 */
+.covers-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+  background: #f0ede8;
+  margin-bottom: 10px;
+}
+.covers-thumb-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* 이미지 없을 때 아이콘 */
+.covers-thumb-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--muted);
+}
+
+/* 호버 시 재생 오버레이 */
+.covers-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--ease);
+}
+.covers-card:hover .covers-overlay { opacity: 1; }
+
+/* 재생 아이콘 원 */
+.play-btn {
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* CSS 삼각형으로 재생 아이콘 */
+.play-btn::after {
+  content: '';
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 12px;
+  border-color: transparent transparent transparent rgba(255,255,255,0.95);
+  margin-left: 2px;
+}
+
+.covers-card-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.covers-card-voca {
+  font-size: 11px;
+  color: var(--sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 슬라이더 화살표 버튼 */
+.sl-btn {
+  position: absolute;
+  top: calc(50% - 20px);   /* 아트 이미지 중앙 */
+  transform: translateY(-50%);
+  width: 36px; height: 36px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--sub);
+  transition: all var(--ease);
+  z-index: 2;
+}
+.sl-btn:hover { background: var(--text); color: var(--white); border-color: var(--text); }
+.sl-prev { left: -18px; }
+.sl-next { right: -18px; }
+
+/* 무한 스크롤 박스 */
+.voca-scroll-wrap {
+  height: 160px;
+  overflow: hidden;
+}
+
+.voca-scroll-track {
+  animation: scrollUp 13s linear infinite;
+}
+
+.voca-scroll-wrap:hover .voca-scroll-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+/* ─── 반응형 ─────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  /* 히어로: 세로 레이아웃 */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hero-side {
+    flex-direction: row;   /* 오른쪽 박스들을 가로로 */
+    gap: 12px;
+  }
+  .hero-chara-box,
+  .news-mini-box { flex: 1; }
+}
+
+@media (max-width: 600px) {
+  .hero-side { flex-direction: column; }
+  .voca-engine { display: none; }
+  .tips-desc { display: none; }
+  .covers-card { flex: 0 0 140px; }
+  .sl-btn { display: none; }
+  .hero-title {
+    font-size: clamp(28px, 8vw, 42px); /* 모바일에서 적당한 크기로 */
+  }
+}
+

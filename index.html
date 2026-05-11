@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✏️ 브라우저 탭 제목 수정 -->
+  <title>iXia</title>
+
+  <!-- ✏️ SNS 공유 미리보기 수정 -->
+  <meta property="og:title" content="iXia" />
+  <meta property="og:description" content="Vocal Synthesis / Cover / Tips" />
+  <meta property="og:type" content="website" />
+
+  <!-- 파비콘: images/favicon.ico 파일 넣으면 자동 적용 -->
+  <link rel="icon" href="images/favicon.ico" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/tips.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     네비게이션 바
+     ✏️ 사이트 이름: .nav-logo 안
+     ✏️ 메뉴 이름:  .nav-menu 안 각 <a> 텍스트
+═══════════════════════════════════════════════════════ -->
+<header class="site-nav">
+  <div class="wrap nav-inner">
+
+    <!-- ✏️ 왼쪽 로고/이름 -->
+    <a href="index.html" class="nav-logo">iXia</a>
+
+    <!-- PC 메뉴 -->
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/music.html">Music</a></li>
+        <li><a href="pages/tips.html">Tips</a></li>
+        <li><a href="pages/character.html">Character</a></li>
+        <li><a href="pages/download.html">Download</a></li>
+      </ul>
+    </nav>
+
+    <!-- 모바일 햄버거 -->
+    <button class="hamburger" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- 모바일 드롭다운 -->
+<nav class="mob-menu">
+  <a href="index.html">Home</a>
+  <a href="pages/music.html">Music</a>
+  <a href="pages/tips.html">Tips</a>
+  <a href="pages/character.html">Character</a>
+  <a href="pages/download.html">Download</a>
+</nav>
+
+
+<main>
+
+  <!-- ══════════════════════════════════════════════════
+       히어로 섹션
+       스케치: 왼쪽(텍스트+버튼) / 오른쪽(캐릭터 링크 + NEWS 박스)
+       
+       ✏️ 제목:    .hero-title 안
+       ✏️ 설명:    .hero-desc 안
+       ✏️ 버튼:    .hero-btns 안 <a> 태그 href와 텍스트
+       ✏️ 캐릭터 이미지: .hero-chara-img 의 src 속성
+                         (images/ 폴더에 파일 넣고 경로 수정)
+       ✏️ 뉴스 항목: .news-mini-list 안 <li> 수정
+  ══════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <!-- ── 왼쪽: 텍스트 ── -->
+        <div class="hero-text">
+
+          <!-- ✏️ 작은 라벨 텍스트 -->
+          <span class="hero-kicker">SOUND & ARCHIVE</span>
+
+          <!--
+            ✏️ 메인 타이틀.
+            <span class="h-accent">으로 감싼 부분은 베이지 색상 강조.
+            <br> 로 줄바꿈.
+          -->
+          <h1 class="hero-title">
+            iXia’s<br />
+             <span class="h-accent">ATELIER</span>
+          </h1>
+
+          <!-- ✏️ 소개 문장 -->
+          <p class="hero-desc">
+            iXia<br />
+            vocaloid cover song 업로드를 메인으로 활동하고 있습니다.<br />
+            본 홈페이지에서는 VOCALOID 관련 개인적으로 공유하고 싶은 팁, 파일 등을 올리고 있습니다.<br /><br />
+            contact : ixia1178@gmail.com<br />
+            본 사이트는 공식과는 무관한 개인 사이트 입니다.
+
+          </p>
+
+
+        </div>
+
+        <!-- ── 오른쪽: 사이드 박스 2개 ── -->
+        <div class="hero-side">
+
+          <!--
+            캐릭터 페이지 링크 박스
+            스케치: "이 사이에 CHARACTER 페이지로 이동"
+            
+            ✏️ 이미지 넣는 방법:
+               1. images/ 폴더에 이미지 파일 넣기
+               2. 아래 <img> 태그의 src="" 에 경로 입력
+                  예) src="images/chara-thumb.jpg"
+               3. .hero-chara-img.placeholder div 는 지우기
+          -->
+          <div class="hero-chara-box">
+
+            <!-- 이미지가 있을 때 → 아래 주석 해제, placeholder div 삭제 -->
+            <!-- <img class="hero-chara-img" src="images/chara-thumb.jpg" alt="캐릭터" /> -->
+
+            <!-- 이미지가 없을 때 임시 표시 (이미지 생기면 이 div 삭제) -->
+            <img class="hero-chara-img" src="img/profile.png" alt="프로필" />
+
+            <div class="hero-chara-bar">
+              <a href="https://x.com/iXIA_00" target="_blank" aria-label="X">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              <a href="https://www.youtube.com/@iXIA00" target="_blank" aria-label="YouTube">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+              <a href="https://www.nicovideo.jp/user/136156987" target="_blank" aria-label="NicoNico">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 14.578c-.36 1.01-1.306 1.698-2.38 1.718H8.818c-1.074-.02-2.02-.708-2.38-1.718L5.4 10.8c-.213-.595.1-1.25.695-1.463.595-.214 1.25.1 1.463.694l.9 2.506c.09.252.328.422.596.43h5.892c.268-.008.505-.178.596-.43l.9-2.506c.213-.595.868-.908 1.463-.694.595.213.908.868.695 1.463l-1.038 3.778z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!--
+            NEWS 미니 박스
+            스케치: "NEWS 섹션 추가, n월 n일 ~추가됐습니다"
+            
+            ✏️ 뉴스 항목 수정: 아래 <li> 들을 수정해.
+            최신순으로 위에 쓰고, new 뱃지는 최신 항목에만 달아.
+            항목은 2~3개가 적당해 (박스가 너무 길어지니까).
+          -->
+          <div class="news-mini-box">
+            <div class="news-mini-head">
+              <h3>News</h3>
+              <!-- ✏️ 뉴스 페이지가 따로 생기면 href 수정 -->
+              <!-- <a href="pages/news.html" class="btn-more" style="font-size:9px;">all →</a> -->
+            </div>
+            <ul class="news-mini-list">
+
+              <!--
+                ✏️ 뉴스 항목 하나 예시.
+                복사해서 추가해. 오래된 것은 아래로 밀어.
+              -->
+              <li class="news-mini-item">
+                <span class="news-mini-date">2025.05.10</span>
+                <span class="news-mini-text">
+                  홈페이지 오픈했습니다!
+                  <span class="badge-new">New</span>
+                </span>
+              </li>
+
+              <li class="news-mini-item">
+                <span class="news-mini-date">2025.05.01</span>
+                <span class="news-mini-text">새 커버곡 업로드했습니다.</span>
+              </li>
+
+              <li class="news-mini-item">
+                <span class="news-mini-date">2025.04.20</span>
+                <span class="news-mini-text">TIPS 가이드 추가했습니다.</span>
+              </li>
+
+            </ul>
+          </div>
+
+        </div><!-- /hero-side -->
+
+      </div><!-- /hero-grid -->
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       보유 음성합성엔진 목록
+       스케치: "보유 음성합성엔진 목록 (VOCALOID 이름 + 엔진)"
+       
+       ✏️ 항목 수정: <li class="voca-item"> 블록 복사해서 추가.
+       ✏️ 이름, 엔진, 링크(href) 각각 수정.
+       ✏️ href는 나중에 캐릭터 상세 페이지 앵커(#아이디)로 바꿔.
+  ══════════════════════════════════════════════════ -->
+  <section class="section anim">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-en">Singers</span>
+        <h2 class="sec-title">보유 음성합성엔진</h2>
+      </div>
+      <a href="pages/character.html" class="btn-more">더보기 →</a>
+    </div>
+
+    <div class="voca-scroll-wrap">
+      <div class="voca-scroll-track">
+
+        <ul class="voca-list">
+          <li>
+            <a href="pages/character.html#hatsune-miku" class="voca-item">
+              <span class="voca-num">01</span>
+              <span class="voca-name">카무이 가쿠포</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#ia" class="voca-item">
+              <span class="voca-num">02</span>
+              <span class="voca-name">메구리네 루카</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#gumi" class="voca-item">
+              <span class="voca-num">03</span>
+              <span class="voca-name">Lily</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- 무한루프용 복사본 (위랑 똑같이) -->
+        <ul class="voca-list">
+          <li>
+            <a href="pages/character.html#hatsune-miku" class="voca-item">
+              <span class="voca-num">04</span>
+              <span class="voca-name">히야마 키요테루</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#ia" class="voca-item">
+              <span class="voca-num">05</span>
+              <span class="voca-name">IA</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#gumi" class="voca-item">
+              <span class="voca-num">06</span>
+              <span class="voca-name">GUMI</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="voca-list">
+          <li>
+            <a href="pages/character.html#hatsune-miku" class="voca-item">
+              <span class="voca-num">07</span>
+              <span class="voca-name">유즈키 유카리</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#ia" class="voca-item">
+              <span class="voca-num">08</span>
+              <span class="voca-name">vy1</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#gumi" class="voca-item">
+              <span class="voca-num">09</span>
+              <span class="voca-name">오토마치 우나</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="voca-list">
+          <li>
+            <a href="pages/character.html#hatsune-miku" class="voca-item">
+              <span class="voca-num">10</span>
+              <span class="voca-name">히비키 코토</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#ia" class="voca-item">
+              <span class="voca-num">11</span>
+              <span class="voca-name">kokone</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#gumi" class="voca-item">
+              <span class="voca-num">12</span>
+              <span class="voca-name">chika</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="voca-list">
+          <li>
+            <a href="pages/character.html#hatsune-miku" class="voca-item">
+              <span class="voca-num">13</span>
+              <span class="voca-name">KAITO</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#ia" class="voca-item">
+              <span class="voca-num">14</span>
+              <span class="voca-name">키즈나 아카리</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#gumi" class="voca-item">
+              <span class="voca-num">15</span>
+              <span class="voca-name">류토</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="voca-list">
+          <li>
+            <a href="pages/character.html#hatsune-miku" class="voca-item">
+              <span class="voca-num">16</span>
+              <span class="voca-name">CUL</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/character.html#ia" class="voca-item">
+              <span class="voca-num">17</span>
+              <span class="voca-name">asa</span>
+              <span class="voca-engine">VOCALOID</span>
+              <span class="voca-arrow">→</span>
+            </a>
+          </li>
+         
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- ══════════════════════════════════════════════════
+       TUNING TIPS 미리보기
+       스케치: 목록 형태, "더보기 >" 클릭 → TIPS 페이지 이동
+       
+       ✏️ 팁 항목 수정: <li> 블록 복사해서 추가.
+       ✏️ href: TIPS 페이지 내 앵커 (pages/tips.html#tip-01)
+  ══════════════════════════════════════════════════ -->
+  <section class="section anim">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-en">How to</span>
+        <h2 class="sec-title">Tuning Tips</h2>
+      </div>
+      <a href="pages/tips.html" class="btn-more">더보기 →</a>
+    </div>
+
+    <!-- 최신 글 3개 자동으로 표시 — 건드리지 않아도 돼! -->
+    <ul class="tips-list" id="home-tips-list"></ul>
+
+  </div>
+</section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       COVERS 슬라이더
+       스케치: 가로 슬라이딩, 재생 버튼 아이콘, "더보기 >" → MUSIC 페이지
+       
+       ✏️ 커버 곡 추가: <div class="covers-card"> 블록을 복사해서 추가.
+       ✏️ 앨범 아트: .covers-thumb 안에 <img src="경로"> 넣기.
+       ✏️ 링크: href 에 유튜브/니코동 주소 넣기.
+  ══════════════════════════════════════════════════ -->
+  
+<script src="js/tips-data.js"></script>
+<script>
+  /* 홈 Tips 미리보기: 최신 3개 자동 표시 */
+  const homeTipsList = document.getElementById('home-tips-list');
+  if (homeTipsList) {
+    const recent = TIPS_DATA.slice(0, 3);
+    homeTipsList.innerHTML = recent.map(post => `
+      <li class="tips-item">
+        <a href="pages/tips-post.html?id=${post.id}" class="tips-item-link">
+          <div class="tips-item-main">
+            <p class="tips-item-title">${post.title}</p>
+            <p class="tips-item-summary">${post.summary}</p>
+            <div class="tips-item-tags">
+              ${post.tags.map(t => `<span class="tips-tag">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="tips-item-right">
+            <span class="tips-item-date">${post.date}</span>
+            <span class="tips-item-arrow">→</span>
+          </div>
+        </a>
+      </li>
+    `).join('');
+  }
+</script>
+
+</main>
+
+
+<!-- ══════════════════════════════════════════════════════
+     푸터
+     ✏️ 이름: .footer-name 안
+     ✏️ 설명: .footer-desc 안
+     ✏️ 외부 링크: .footer-links 안 <a> 태그의 href와 텍스트
+═══════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+
+      <!-- 왼쪽: 이름 + 소개 -->
+      <div>
+        <!-- ✏️ 하단 이름 수정 -->
+        <p class="footer-name">iXia</p>
+        <!-- ✏️ 짧은 소개 수정 -->
+        <p class="footer-desc">
+          Vocal Synthesis / Cover / Illust<br />
+          Pixiv: @iXia
+        </p>
+      </div>
+
+      <!-- 오른쪽: 외부 링크들 -->
+      <div class="footer-links">
+        <!-- ✏️ href="" 안에 실제 SNS 링크 넣기. 필요없는 줄은 지워. -->
+        <a href="https://www.pixiv.net/" target="_blank">Pixiv</a>
+        <a href="https://twitter.com/" target="_blank">X / Twitter</a>
+        <a href="https://www.nicovideo.jp/" target="_blank">NicoNico</a>
+        <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+      </div>
+
+    </div>
+
+    <!-- ✏️ 이름과 연도 수정 -->
+    <p class="footer-copy">&copy; 2025 iXia. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>

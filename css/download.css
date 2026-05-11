@@ -1,0 +1,222 @@
+/* ============================================================
+   download.css — Download 페이지 전용 스타일
+============================================================ */
+
+/* ─── 페이지 헤더 ─────────────────────────────────────────── */
+.page-header {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--line);
+}
+.page-title {
+  font-family: var(--font-en);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 200;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 6px 0 10px;
+}
+.page-desc {
+  font-size: 13px;
+  color: var(--sub);
+}
+
+/* ─── 목록 ───────────────────────────────────────────────── */
+.dl-list {
+  padding: 8px 0 60px;
+}
+
+.dl-item {
+  border-bottom: 1px solid var(--line);
+}
+.dl-item:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.dl-item-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  transition: color var(--ease);
+}
+.dl-item-link:hover .dl-item-title {
+  color: var(--accent);
+}
+
+.dl-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.dl-item-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  transition: color var(--ease);
+}
+
+.dl-item-summary {
+  font-size: 13px;      /* 12px → 13px */
+  color: var(--sub);
+  line-height: 1.7;
+}
+
+.dl-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.dl-item-date {
+  font-family: var(--font-en);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.dl-item-arrow {
+  font-size: 14px;
+  color: var(--muted);
+  transition: transform var(--ease), color var(--ease);
+}
+.dl-item-link:hover .dl-item-arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* ─── 상세 페이지 ─────────────────────────────────────────── */
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin: 36px 0 32px;
+  transition: color var(--ease);
+}
+.post-back:hover { color: var(--accent); }
+
+.post-header {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 36px;
+}
+
+.post-meta {
+  margin-bottom: 14px;
+}
+
+.post-date {
+  font-family: var(--font-en);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.post-title {
+  font-family: var(--font-en);
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 200;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+/* 본문 */
+.post-body {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text);
+  padding-bottom: 60px;
+  max-width: 720px;
+}
+.post-body p { margin-bottom: 1.4em; }
+.post-body h2 {
+  font-family: var(--font-en);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin: 2em 0 0.8em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.post-body h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 1.6em 0 0.6em;
+}
+.post-body img {
+  max-width: 100%;
+  margin: 1.5em 0;
+  border: 1px solid var(--line);
+}
+.post-body ul, .post-body ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.4em;
+}
+.post-body li { margin-bottom: 0.4em; }
+.post-body code {
+  font-family: monospace;
+  font-size: 13px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+}
+.post-body pre {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 1.4em;
+}
+.post-body pre code {
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+/* 다운로드 버튼 — 상세 페이지에서 사용 */
+/*
+  ✏️ 다운로드 버튼 추가하려면 content 안에 이렇게 써줘:
+  <a href="파일링크" class="dl-btn">파일명 다운로드</a>
+*/
+.dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: var(--text);
+  color: var(--white);
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--text);
+  transition: all var(--ease);
+  margin: 1em 0;
+}
+.dl-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.dl-btn::before {
+  content: '↓';
+  font-size: 13px;
+}
+
+.post-loading {
+  padding: 60px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ─── 반응형 ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .dl-item-summary { display: none; }
+}

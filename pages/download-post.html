@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download — iXia</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/download.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a href="../index.html" class="nav-logo">iXia</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="tips.html">Tips</a></li>
+        <li><a href="character.html">Character</a></li>
+        <li><a href="download.html" class="active">Download</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mob-menu">
+  <a href="../index.html">Home</a>
+  <a href="music.html">Music</a>
+  <a href="tips.html">Tips</a>
+  <a href="character.html">Character</a>
+  <a href="download.html">Download</a>
+</nav>
+
+<main>
+  <div class="wrap">
+
+    <a href="download.html" class="post-back">← Download 목록으로</a>
+
+    <article class="post" id="post-content">
+      <p class="post-loading">불러오는 중...</p>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-name">iXia</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/iXIA_00" target="_blank">X / Twitter</a>
+        <a href="https://youtube.com/@ixia00" target="_blank">YouTube</a>
+        <a href="https://www.nicovideo.jp/user/136156987" target="_blank">NicoNico</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2025 iXia. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/download-data.js"></script>
+<script>
+/* 상세 페이지 자동 로드 — 건드리지 않아도 돼! */
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id'));
+const item = DOWNLOAD_DATA.find(d => d.id === id);
+const el = document.getElementById('post-content');
+
+if (item) {
+  document.title = item.title + ' — iXia';
+  el.innerHTML = `
+    <header class="post-header">
+      <div class="post-meta">
+        <span class="post-date">${item.date}</span>
+      </div>
+      <h1 class="post-title">${item.title}</h1>
+    </header>
+    <div class="post-body">
+      ${item.content}
+    </div>
+  `;
+} else {
+  el.innerHTML = '<p class="post-loading">항목을 찾을 수 없습니다.</p>';
+}
+</script>
+
+</body>
+</html>
