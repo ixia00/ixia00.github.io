@@ -71,25 +71,80 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/download-data.js"></script>
 <script>
-/* 다운로드 목록 자동 생성 — 건드리지 않아도 돼! */
+/* GitHub API로 _download 폴더 마크다운 파일 읽어오기 */
 const listEl = document.getElementById('dl-list');
+const REPO = 'ixia00/ixia00.github.io';
+const FOLDER = '_download';
 
-listEl.innerHTML = DOWNLOAD_DATA.map(item => `
-  <li class="dl-item">
-    <a href="download-post.html?id=${item.id}" class="dl-item-link">
-      <div class="dl-item-main">
-        <p class="dl-item-title">${item.title}</p>
-        <p class="dl-item-summary">${item.summary}</p>
-      </div>
-      <div class="dl-item-right">
-        <span class="dl-item-date">${item.date}</span>
-        <span class="dl-item-arrow">→</span>
-      </div>
-    </a>
-  </li>
-`).join('');
+async function loadPosts() {
+  try {
+    /* 파일 목록 가져오기 */
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}`);
+    const files = await res.json();
+
+    /* .md 파일만 필터링하고 숨김파일 제외 */
+    const mdFiles = files
+      .filter(f => f.name.endsWith('.md') && !f.name.startsWith('.'))
+      .reverse(); /* 최신순 */
+
+    /* 각 파일 내용 가져오기 */
+    const posts = await Promise.all(mdFiles.map(async file => {
+      const r = await fetch(file.download_url);
+      const text = await r.text();
+      return parseFrontmatter(text, file.name);
+    }));
+
+    /* 날짜순 정렬 */
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    /* 목록 렌더링 */
+    listEl.innerHTML = posts.map(post => `
+      <li class="dl-item">
+        <a href="download-post.html?slug=${post.slug}" class="dl-item-link">
+          <div class="dl-item-main">
+            <p class="dl-item-title">${post.title}</p>
+            <p class="dl-item-summary">${post.summary}</p>
+          </div>
+          <div class="dl-item-right">
+            <span class="dl-item-date">${formatDate(post.date)}</span>
+            <span class="dl-item-arrow">→</span>
+          </div>
+        </a>
+      </li>
+    `).join('');
+
+  } catch(e) {
+    listEl.innerHTML = '<li style="padding:20px;color:var(--muted);">불러오는 중 오류가 발생했습니다.</li>';
+  }
+}
+
+/* frontmatter 파싱 (---로 감싼 메타데이터) */
+function parseFrontmatter(text, filename) {
+  const match = text.match(/^---\n([\s\S]*?)\n---/);
+  const meta = {};
+  if (match) {
+    match[1].split('\n').forEach(line => {
+      const [key, ...val] = line.split(':');
+      if (key) meta[key.trim()] = val.join(':').trim().replace(/^"|"$/g, '');
+    });
+  }
+  return {
+    title: meta.title || filename,
+    date: meta.date || '',
+    summary: meta.summary || '',
+    slug: filename.replace('.md', '')
+  };
+}
+
+/* 날짜 포맷 */
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+}
+
+loadPosts();
 </script>
 
 </body>

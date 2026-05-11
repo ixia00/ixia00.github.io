@@ -62,31 +62,59 @@
 </footer>
 
 <script src="../js/main.js"></script>
-<script src="../js/download-data.js"></script>
 <script>
-/* 상세 페이지 자동 로드 — 건드리지 않아도 돼! */
-const params = new URLSearchParams(window.location.search);
-const id = parseInt(params.get('id'));
-const item = DOWNLOAD_DATA.find(d => d.id === id);
+/* GitHub API로 마크다운 파일 읽어오기 */
+const REPO = 'ixia00/ixia00.github.io';
+const FOLDER = '_download';
 const el = document.getElementById('post-content');
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('slug');
 
-if (item) {
-  document.title = item.title + ' — iXia';
-  el.innerHTML = `
-    <header class="post-header">
-      <div class="post-meta">
-        <span class="post-date">${item.date}</span>
+async function loadPost() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}/${slug}.md`);
+    const file = await res.json();
+    const text = atob(file.content.replace(/\n/g, ''));
+
+    /* frontmatter 제거하고 본문만 추출 */
+    const body = text.replace(/^---[\s\S]*?---\n/, '');
+
+    /* frontmatter 파싱 */
+    const match = text.match(/^---\n([\s\S]*?)\n---/);
+    const meta = {};
+    if (match) {
+      match[1].split('\n').forEach(line => {
+        const [key, ...val] = line.split(':');
+        if (key) meta[key.trim()] = val.join(':').trim().replace(/^"|"$/g, '');
+      });
+    }
+
+    const d = new Date(meta.date);
+    const dateStr = meta.date ? `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}` : '';
+
+    document.title = meta.title + ' — iXia';
+
+    el.innerHTML = `
+      <header class="post-header">
+        <div class="post-meta">
+          <span class="post-date">${dateStr}</span>
+        </div>
+        <h1 class="post-title">${meta.title}</h1>
+      </header>
+      <div class="post-body">
+        ${marked(body)}
       </div>
-      <h1 class="post-title">${item.title}</h1>
-    </header>
-    <div class="post-body">
-      ${item.content}
-    </div>
-  `;
-} else {
-  el.innerHTML = '<p class="post-loading">항목을 찾을 수 없습니다.</p>';
+    `;
+  } catch(e) {
+    el.innerHTML = '<p class="post-loading">글을 찾을 수 없습니다.</p>';
+  }
 }
+
+loadPost();
 </script>
+
+<!-- 마크다운 파싱 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </body>
 </html>
