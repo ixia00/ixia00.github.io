@@ -103,7 +103,7 @@ async function loadPost() {
         <h1 class="post-title">${meta.title}</h1>
       </header>
       <div class="post-body">
-        ${marked.parse(body)}
+        ${marked.parse(body, {mangle: false, headerIds: false, sanitize: false})}
       </div>
     `;
 } catch(e) {
